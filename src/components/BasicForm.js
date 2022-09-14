@@ -55,33 +55,32 @@ const BasicForm = (props) => {
   return (
     <form onSubmit={submitHandler}>
       <div className={checkErrorClass(firstNameHasError)}>
-        <div className="form-control">
-          <label htmlFor="name">First Name</label>
-          <input
-            type="text"
-            id="name"
-            value={firstNameValue}
-            onChange={firstNameChangeHandler}
-            onBlur={firstNameBlurHandler}
-          />
-          {checkErrorClass(firstNameHasError) === "form-control invalid" && (
-            <p>Please enter a first name.</p>
-          )}
-        </div>
-        <div className={checkErrorClass(lastNameHasError)}>
-          <label htmlFor="name">Last Name</label>
-          <input
-            type="text"
-            id="name"
-            value={lastNameValue}
-            onChange={lastNameChangeHandler}
-            onBlur={lastNameBlurHandler}
-          />
-        </div>
-        {checkErrorClass(lastNameHasError) === "form-control invalid" && (
+        <label htmlFor="name">First Name</label>
+        <input
+          type="text"
+          id="name"
+          value={firstNameValue}
+          onChange={firstNameChangeHandler}
+          onBlur={firstNameBlurHandler}
+        />
+        {checkErrorClass(firstNameHasError).indexOf("invalid") > -1 && (
+          <p>Please enter a first name.</p>
+        )}
+      </div>
+      <div className={checkErrorClass(lastNameHasError)}>
+        <label htmlFor="name">Last Name</label>
+        <input
+          type="text"
+          id="name"
+          value={lastNameValue}
+          onChange={lastNameChangeHandler}
+          onBlur={lastNameBlurHandler}
+        />
+        {checkErrorClass(lastNameHasError).indexOf("invalid") > -1 && (
           <p>Please enter a last name.</p>
         )}
       </div>
+
       <div className={checkErrorClass(emailHasError)}>
         <label htmlFor="name">E-Mail Address</label>
         <input
@@ -91,7 +90,7 @@ const BasicForm = (props) => {
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
         />
-        {!checkErrorClass(emailHasError) === "form-control invalid" && (
+        {checkErrorClass(emailHasError).indexOf("invalid") > -1 && (
           <p>Please enter a valid email address.</p>
         )}
       </div>
